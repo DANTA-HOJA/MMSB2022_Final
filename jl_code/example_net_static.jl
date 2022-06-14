@@ -1,14 +1,15 @@
 using DifferentialEquations
+using Sundials
 using ModelingToolkit
 using Plots
 Plots.gr(lw=2)
 
 # fact is a normalized-Hill activation function
 function act(X, W, n, EC_50)
-    beta = (EC_50^n - 1)/(2*EC_50^n -1)
+    beta = ((EC_50^n) - 1)/(2*(EC_50^n) - 1)
     K = (beta-1)^(1/n)
     
-    return W*((beta*X^n)/(K^n+X^n))
+    return W*((beta*(X^n))/((K^n)+(X^n)))
 end
 
 inhib(act_n_hill_fn, W) = W - act_n_hill_fn
@@ -51,18 +52,23 @@ eqsFull = [ r3_fact_A ~ act(A, r3_W, r3_n, r3_EC_50),
 @named fullsys = ODESystem(eqsFull)
 fullSys = structural_simplify(fullsys)
 
-
-# fact(0) = 0, fact(EC50) = 0.5 and fact(1) = 1. From these constraints 
-#    --> beta = (EC_50^n - 1)/(2*EC_50^n -1), K = (beta-1)^(1/n)
-
-# We further constrained fact(X) = 1 for X ≥ 1 to ensure that species activities are limited to YMAX.
+#= 
+# NOTE: mentioned in article, help for tuning
+#
+# From these three constraints, 
+#
+#   fact(0) = 0, fact(EC50) = 0.5 and fact(1) = 1.
+#
+# derived --> beta = (EC_50^n - 1)/(2*EC_50^n -1), K = (beta-1)^(1/n)
+#
+# further constrained fact(X) = 1 for X ≥ 1 to ensure that species activities are limited to YMAX.
 #     As default parameters, we used W = 1, EC50 = 0.5, n = 1.4, τ = 1, and YMAX = 1.
-
+#
 # τ is the time constant for a given species
 # W is the reaction weight (constrained to 0 ≤ W ≤ 1)
 # YMAX is the maximal fractional activation allowing simulations of knock-down (YMAX < 1) or overexpression (YMAX > 1). (protein expression)
 # Typical default reaction and species parameter values are W = 1, EC50 = 0.5, n = 1.4, τ = 1, and YMAX = 1
-
+=#
 
 u0 = [A => 1.0, B => 1.0, C => 0.0, D => 0.0, E => 0.0]
 tend = 110.0
@@ -81,7 +87,10 @@ params = [
     r6_W => 1.0, r6_n => 1.4, r6_EC_50 => 0.5  # E => C
 ]
 
-sol1 = solve(ODEProblem(fullSys, u0, tend, params), BS3())
+
+prob = ODEProblem(fullSys, u0, tend, params)
+
+sol1 = solve(prob, CVODE_BDF())
 
 plot(sol1, xticks = 0:5:110, ylims=(0.0, 1.0),
      title="Example_Net ( A + B activation )",
