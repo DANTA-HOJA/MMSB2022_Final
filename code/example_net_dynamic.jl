@@ -6,7 +6,7 @@ Plots.gr(lw=2)
 
 # fact is a normalized-Hill activation function
 function act(X, W, n, EC_50)
-    beta = ((EC_50^n) - 1)/(2*(EC_50^n) -1)
+    beta = ((EC_50^n) - 1)/(2*(EC_50^n) - 1)
     K = (beta-1)^(1/n)
     
     return W*((beta*(X^n))/((K^n)+(X^n)))
@@ -201,7 +201,26 @@ prob = ODEProblem(fullSys, u0, tspan, params)
 @time sol1 = solve(prob, QNDF(), callback=cb_set, tstops=dosetime)
 
 
-plot(sol1, xticks = 0:5:110, yticks = 0:0.1:1, xlims=(0, 130), ylims=(0.0, 1.1),
-     title="Example_Net (Dynamic reaction)", legend=:bottomright, 
-     xlabel="Time (sec)",
-     ylabel="Fractioanl activation")
+# plot all together
+plot(sol1,
+     xticks = 0:5:110, yticks = 0:0.1:1, x_tickfontsize = 6,
+     xlims=(0, 110), ylims=(0.0, 1.1),
+     title="Example_Net (Dynamic reaction)", legend=:outerbottomright, 
+     xlabel="Time (sec)", ylabel="Fractioanl activation"
+)
+
+
+# plot figure with split AB and CDE
+Fig_AB = plot()
+plot!(Fig_AB, sol1, vars=([1,2]), xlabel="")
+
+Fig_CDE = plot()
+plot!(Fig_CDE, sol1, vars=([3,4,5]), xlabel="Time (sec)")
+
+Fig_all = plot(Fig_AB, Fig_CDE, layout=(2,1))
+plot!(Fig_all, legend=:outerbottomright,
+      xticks = 0:5:110, yticks = 0:0.1:1, x_tickfontsize = 6, y_tickfontsize = 6,
+      xlims=(0, 110), ylims=(0.0, 1.1), 
+      plot_title="Example_Net (Dynamic reaction)",
+      ylabel="Fractioanl activation"
+)
