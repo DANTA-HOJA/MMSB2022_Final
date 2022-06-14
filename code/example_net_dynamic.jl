@@ -20,17 +20,23 @@ OR(a, b) = a + b - a*b
 
 
 # create ODE System using ModelingToolkit
-@parameters max_A, tau_A, 
-max_B, tau_B, 
-max_C, tau_C, 
-max_D, tau_D, 
-max_E, tau_E, 
-r1_W, r1_n, r1_EC_50, # => A
-r2_W, r2_n, r2_EC_50, # => B
-r3_W, r3_n, r3_EC_50, # A => C
-r4_W, r4_n, r4_EC_50, # B => D
-r5_W, r5_n, r5_EC_50,  # C & !D => E
-r6_W, r6_n, r6_EC_50  # E => C
+
+# --- species ---
+@parameters( 
+    max_A, tau_A, 
+    max_B, tau_B, 
+    max_C, tau_C, 
+    max_D, tau_D, 
+    max_E, tau_E )
+
+# --- reactions ---
+@parameters(
+    r1_W, r1_n, r1_EC_50,   # r1 = [ => A ]
+    r2_W, r2_n, r2_EC_50,   # r2 = [ => B ]
+    r3_W, r3_n, r3_EC_50,   # r3 = [ A => C ]
+    r4_W, r4_n, r4_EC_50,   # r4 = [ B => D ]
+    r5_W, r5_n, r5_EC_50,   # r5 = [ C & !D => E ]
+    r6_W, r6_n, r6_EC_50 )  # r6 = [ E => C ]  
 
 @variables t, A(t), B(t), C(t), D(t), E(t), 
 r3_fact_A(t), r4_fact_B(t), r5_fact_C(t), r5_fact_D(t), r6_fact_E(t), r5_finhib_D(t)
@@ -58,12 +64,12 @@ eqsFull = [ r3_fact_A ~ act(A, r3_W, r3_n, r3_EC_50),
       max_C, tau_C,
       max_D, tau_D,
       max_E, tau_E,
-      r1_W, r1_n, r1_EC_50,  # => A
-      r2_W, r2_n, r2_EC_50,  # => B
-      r3_W, r3_n, r3_EC_50,  # A => C
-      r4_W, r4_n, r4_EC_50,  # B => D
-      r5_W, r5_n, r5_EC_50,  # C & !D => E
-      r6_W, r6_n, r6_EC_50 ] # E => C
+      r1_W, r1_n, r1_EC_50,  # r1 = [ => A ]
+      r2_W, r2_n, r2_EC_50,  # r2 = [ => B ]
+      r3_W, r3_n, r3_EC_50,  # r3 = [ A => C ]
+      r4_W, r4_n, r4_EC_50,  # r4 = [ B => D ]
+      r5_W, r5_n, r5_EC_50,  # r5 = [ C & !D => E ]
+      r6_W, r6_n, r6_EC_50 ] # r6 = [ E => C ]
 )
 
 fullSys = structural_simplify(fullsys)
