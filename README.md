@@ -10,7 +10,15 @@
 
 # ODE solver
 
+[mmsb-bebi-5009](https://ntumitolab.github.io/mmsb-bebi-5009/mmsb/ch03.html)
+
+
 [Tutorial：Ordinary Differential Equations](https://diffeq.sciml.ai/dev/tutorials/ode_example/#Defining-Parameterized-Functions)
 
 
 [Julia：如何调试微分方程求解问题](https://blog.csdn.net/weixin_39679367/article/details/120641325?ops_request_misc=&request_id=&biz_id=102&utm_term=julia%20callback&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-120641325.142^v14^control,157^v14^control&spm=1018.2226.3001.4187)
+
+
+# Example Net Result
+
+![example_net_dynamic_result.png](./PNG/ref_paper_Figure1/example_net_dynamic.png)
