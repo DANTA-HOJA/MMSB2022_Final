@@ -217,26 +217,26 @@ eqsFull = [
     Dt(PKI)  ~  (r4_W*max_PKI - PKI)    / tau_PKI,
     Dt(PP2A) ~  (r5_W*max_PP2A - PP2A)  / tau_PP2A,
 
-    Dt(B1AR) ~ (AND(r6_fact_NE, AND(r6_finhib_B1ARPG, r6_finhib_B1ARPA))*max_B1AR - B1AR) / tau_B1AR,
-    Dt(GRK) ~ (r7_fact_B1AR*max_GRK - GRK) / tau_GRK,
-    Dt(B1ARPG) ~ (r8_fact_GRK*max_B1ARPG - B1ARPG) / tau_B1ARPG,
-    Dt(GsaBg) ~ (r9_fact_B1AR*max_GsaBg - GsaBg) / tau_GsaBg,
-    Dt(Gsa) ~ (r10_fact_GsaBg*max_Gsa - Gsa) / tau_Gsa,
-    Dt(Gbg) ~ (r11_fact_GsaBg*max_Gbg - Gbg) / tau_Gbg,
-    Dt(AC) ~ (OR(r12_fact_Gsa, r13_fact_Fsk)*max_AC - AC) / tau_AC,
-    Dt(cAMP) ~ (OR(r14_fact_AC, r16_finhib_PDE)*max_cAMP - cAMP) / tau_cAMP,
-    Dt(PDE) ~ (r15_finhib_IBMX*max_PDE - PDE) / tau_PDE,
-    Dt(PKA) ~ (r17_fact_cAMP*max_PKA - PKA) / tau_PKA,
-    Dt(PKAR) ~ (r18_fact_PKA*max_PKAR - PKAR) / tau_PKAR,
-    Dt(PKAC) ~ (OR(r19_fact_PKA, r21_finhib_PKI)*max_PKAC - PKAC) / tau_PKAC,
-    Dt(IKs) ~ (OR(r20_fact_PKAC, r29_finhib_PP1)*max_IKs - IKs) / tau_IKs,
-    Dt(B1ARPA) ~ (r22_fact_PKAC*max_B1ARPA - B1ARPA) / tau_B1ARPA,
-    Dt(TnI) ~ (OR(r23_fact_PKAC, r34_finhib_PP2A)*max_TnI - TnI) / tau_TnI,
-    Dt(PLB) ~ (OR(r24_fact_PKAC, r31_finhib_PP1)*max_PLB - PLB) / tau_PLB,
-    Dt(Inhib1) ~ (OR(r25_fact_PKAC, r35_finhib_PP2A)*max_Inhib1 - Inhib1) / tau_Inhib1,
-    Dt(RyR) ~ (OR(r26_fact_PKAC, OR(r30_finhib_PP1, r36_finhib_PP2A))*max_RyR - RyR) / tau_RyR,
-    Dt(ICa) ~ (OR(r27_fact_PKAC, OR(r32_finhib_PP1, r33_finhib_PP2A))*max_ICa - ICa) / tau_ICa,
-    Dt(PP1) ~ (r28_finhib_Inhib1*max_PP1 - PP1) / tau_PP1,
+    Dt(B1AR) ~ (r6_W*AND(r6_fact_NE, AND(r6_finhib_B1ARPG, r6_finhib_B1ARPA))*max_B1AR - B1AR) / tau_B1AR,
+    Dt(GRK) ~ (r7_W*r7_fact_B1AR*max_GRK - GRK) / tau_GRK,
+    Dt(B1ARPG) ~ (r8_W*r8_fact_GRK*max_B1ARPG - B1ARPG) / tau_B1ARPG,
+    Dt(GsaBg) ~ (r9_W*r9_fact_B1AR*max_GsaBg - GsaBg) / tau_GsaBg,
+    Dt(Gsa) ~ (r10_W*r10_fact_GsaBg*max_Gsa - Gsa) / tau_Gsa,
+    Dt(Gbg) ~ (r11_W*r11_fact_GsaBg*max_Gbg - Gbg) / tau_Gbg,
+    Dt(AC) ~ (OR(r12_W*r12_fact_Gsa, r13_W*r13_fact_Fsk)*max_AC - AC) / tau_AC,
+    Dt(cAMP) ~ (OR(r14_W*r14_fact_AC, r16_W*r16_finhib_PDE)*max_cAMP - cAMP) / tau_cAMP,
+    Dt(PDE) ~ (r15_W*r15_finhib_IBMX*max_PDE - PDE) / tau_PDE,
+    Dt(PKA) ~ (r17_W*r17_fact_cAMP*max_PKA - PKA) / tau_PKA,
+    Dt(PKAR) ~ (r18_W*r18_fact_PKA*max_PKAR - PKAR) / tau_PKAR,
+    Dt(PKAC) ~ (OR(r19_W*r19_fact_PKA, r21_W*r21_finhib_PKI)*max_PKAC - PKAC) / tau_PKAC,
+    Dt(IKs) ~ (OR(r20_W*r20_fact_PKAC, r29_W*r29_finhib_PP1)*max_IKs - IKs) / tau_IKs,
+    Dt(B1ARPA) ~ (r22_W*r22_fact_PKAC*max_B1ARPA - B1ARPA) / tau_B1ARPA,
+    Dt(TnI) ~ (OR(r23_W*r23_fact_PKAC, r34_W*r34_finhib_PP2A)*max_TnI - TnI) / tau_TnI,
+    Dt(PLB) ~ (OR(r24_W*r24_fact_PKAC, r31_W*r31_finhib_PP1)*max_PLB - PLB) / tau_PLB,
+    Dt(Inhib1) ~ (OR(r25_W*r25_fact_PKAC, r35_W*r35_finhib_PP2A)*max_Inhib1 - Inhib1) / tau_Inhib1,
+    Dt(RyR) ~ (OR(r26_W*r26_fact_PKAC, OR(r30_W*r30_finhib_PP1, r36_W*r36_finhib_PP2A))*max_RyR - RyR) / tau_RyR,
+    Dt(ICa) ~ (OR(r27_W*r27_fact_PKAC, OR(r32_W*r32_finhib_PP1, r33_W*r33_finhib_PP2A))*max_ICa - ICa) / tau_ICa,
+    Dt(PP1) ~ (r28_W*r28_finhib_Inhib1*max_PP1 - PP1) / tau_PP1,
 ]
 
 
@@ -332,10 +332,10 @@ fullSys = structural_simplify(fullsys)
 
 # initial condition
 u0 = [ AC => 0.0,   B1AR => 0.0, B1ARPA => 0.0, B1ARPG => 0.0, cAMP => 0.0,  
-       Fsk => 1.0,  Gbg => 0.0,  GRK => 0.0,    Gsa => 0.0,    GsaBg => 0.0,
-       IBMX => 0.0, ICa => 0.0,  IKs => 0.0,    Inhib1 => 0.0, NE => 1.0,
-       PDE => 0.0,  PKA => 0.0,  PKAC => 0.0,   PKAR => 0.0,   PKI => 1.0,
-       PLB => 0.0,  PP1 => 0.0,  PP2A => 1.0,   RyR => 0.0,    TnI => 0.0 ]
+       Fsk => 0.0,  Gbg => 0.0,  GRK => 0.0,    Gsa => 0.0,    GsaBg => 0.0,
+       IBMX => 0.0, ICa => 0.0,  IKs => 0.0,    Inhib1 => 0.0, NE => 0.0,
+       PDE => 0.0,  PKA => 0.0,  PKAC => 0.0,   PKAR => 0.0,   PKI => 0.0,
+       PLB => 0.0,  PP1 => 0.0,  PP2A => 0.0,   RyR => 0.0,    TnI => 0.0 ]
 
 # time range
 tspan = (0.0, 100.0)
@@ -344,28 +344,13 @@ tspan = (0.0, 100.0)
 # 
 # NOTE: if weight is to small, may cause solver difficult to solve answer
 # by testing, choose weight = 0.99(ON_state), 0.02(OFF_state)
-# 
-
-# Figure 7
-# τB1AR = 0.1
-# τB1ARPG = 0.611
-# τB1ARPA = 287.97
-# τPLB = 9.69
-
-# W(GRK -> B1ARPG) = 0.537
-# W(PKAC -> B1ARPA) = 0.95
-# W(PKAC -> PLB) = 0.5947
-# EC50(AC -> cAMP) = 0.5324
-# EC50(cAMP -> PKAC) = 0.4881
-# EC50(PKAC -> PLB) = 0.3128
-
 
 params = [
     # --- species ---
     max_AC => 1.0, tau_AC => 1.0,             # 1. AC
-    max_B1AR => 1.0, tau_B1AR => 0.1,         # 2 .B1AR
-    max_B1ARPA => 1.0, tau_B1ARPA => 287.97,     # 3. B1ARPA
-    max_B1ARPG => 1.0, tau_B1ARPG => 0.611,     # 4. B1ARPG
+    max_B1AR => 1.0, tau_B1AR => 1.0,         # 2 .B1AR
+    max_B1ARPA => 1.0, tau_B1ARPA => 1.0,     # 3. B1ARPA
+    max_B1ARPG => 1.0, tau_B1ARPG => 1.0,     # 4. B1ARPG
     max_cAMP => 1.0, tau_cAMP => 1.0,         # 5. cAMP
     max_Fsk => 1.0, tau_Fsk => 1.0,           # 6. Fsk
     max_Gbg => 1.0, tau_Gbg => 1.0,           # 7. Gbg (in Excel) / Gsbg (in PDF)
@@ -382,7 +367,7 @@ params = [
     max_PKAC => 1.0, tau_PKAC => 1.0,         # 18. PKAC
     max_PKAR => 1.0, tau_PKAR => 1.0,         # 19. PKAR
     max_PKI => 1.0, tau_PKI => 1.0,           # 20. PKI
-    max_PLB => 1.0, tau_PLB => 9.69,           # 21. PLB
+    max_PLB => 1.0, tau_PLB => 1.0,           # 21. PLB
     max_PP1 => 1.0, tau_PP1 => 1.0,           # 22. PP1
     max_PP2A => 1.0, tau_PP2A => 1.0,         # 23. PP2A
     max_RyR => 1.0, tau_RyR => 1.0,           # 24. RyR
@@ -390,31 +375,31 @@ params = [
     
     # --- reactions ---
     # %% input %%
-    r1_W => 0.3, r1_n => 1.4, r1_EC_50 => 0.5,      #  r1 = [ => NE ]
-    r2_W => 0.5, r2_n => 1.4, r2_EC_50 => 0.5,      #  r2 = [ => Fsk ]
+    r1_W => 0.02, r1_n => 1.4, r1_EC_50 => 0.5,      #  r1 = [ => NE ]
+    r2_W => 0.02, r2_n => 1.4, r2_EC_50 => 0.5,      #  r2 = [ => Fsk ]
     r3_W => 0.02, r3_n => 1.4, r3_EC_50 => 0.5,      #  r3 = [ => IBMX ]
     r4_W => 0.02, r4_n => 1.4, r4_EC_50 => 0.5,      #  r4 = [ => PKI ]
-    r5_W => 0.98, r5_n => 1.4, r5_EC_50 => 0.5,      #  r5 = [ => PP2A ]
+    r5_W => 0.02, r5_n => 1.4, r5_EC_50 => 0.5,      #  r5 = [ => PP2A ]
     # %% middle %%
     r6_W => 0.98, r6_n => 1.4, r6_EC_50 => 0.5,      #  r6 = [ NE & !B1ARPG & !B1ARPA => B1AR ]
     r7_W => 0.98, r7_n => 1.4, r7_EC_50 => 0.5,      #  r7 = [ B1AR => GRK ]
-    r8_W => 0.537, r8_n => 1.4, r8_EC_50 => 0.5,      #  r8 = [ GRK => B1ARPG ]
+    r8_W => 0.98, r8_n => 1.4, r8_EC_50 => 0.5,      #  r8 = [ GRK => B1ARPG ]
     r9_W => 0.98, r9_n => 1.4, r9_EC_50 => 0.5,      #  r9 = [ B1AR => GsaBg ]
     r10_W => 0.98, r10_n => 1.4, r10_EC_50 => 0.5,   # r10 = [ GsaBg => Gsa ]
     r11_W => 0.98, r11_n => 1.4, r11_EC_50 => 0.5,   # r11 = [ GsaBg => Gbg ]
     r12_W => 0.98, r12_n => 1.4, r12_EC_50 => 0.5,   # r12 = [ Gsa => AC ]
     r13_W => 0.98, r13_n => 1.4, r13_EC_50 => 0.5,   # r13 = [ Fsk => AC ]
-    r14_W => 0.98, r14_n => 1.4, r14_EC_50 => 0.5324,   # r14 = [ AC => cAMP ]
+    r14_W => 0.98, r14_n => 1.4, r14_EC_50 => 0.5,   # r14 = [ AC => cAMP ]
     r15_W => 0.98, r15_n => 1.4, r15_EC_50 => 0.5,   # r15 = [ !IBMX => PDE ]
     r16_W => 0.98, r16_n => 1.4, r16_EC_50 => 0.5,   # r16 = [ !PDE => cAMP ]
-    r17_W => 0.98, r17_n => 1.4, r17_EC_50 => 0.4881,   # r17 = [ cAMP => PKA ]
+    r17_W => 0.98, r17_n => 1.4, r17_EC_50 => 0.5,   # r17 = [ cAMP => PKA ]
     r18_W => 0.98, r18_n => 1.4, r18_EC_50 => 0.5,   # r18 = [ PKA => PKAR ]
-    r19_W => 0.98, r19_n => 1.4, r19_EC_50 => 0.4881,   # r19 = [ PKA => PKAC ]
+    r19_W => 0.98, r19_n => 1.4, r19_EC_50 => 0.5,   # r19 = [ PKA => PKAC ]
     r20_W => 0.98, r20_n => 1.4, r20_EC_50 => 0.5,   # r20 = [ PKAC => IKs ]
     r21_W => 0.98, r21_n => 1.4, r21_EC_50 => 0.5,   # r21 = [ !PKI => PKAC ]
-    r22_W => 0.95, r22_n => 1.4, r22_EC_50 => 0.5,   # r22 = [ PKAC => B1ARPA ]
+    r22_W => 0.98, r22_n => 1.4, r22_EC_50 => 0.5,   # r22 = [ PKAC => B1ARPA ]
     r23_W => 0.98, r23_n => 1.4, r23_EC_50 => 0.5,   # r23 = [ PKAC => TnI ]
-    r24_W => 0.5947, r24_n => 1.4, r24_EC_50 => 0.3128,   # r24 = [ PKAC => PLB ]
+    r24_W => 0.98, r24_n => 1.4, r24_EC_50 => 0.5,   # r24 = [ PKAC => PLB ]
     r25_W => 0.98, r25_n => 1.4, r25_EC_50 => 0.5,   # r25 = [ PKAC => Inhib1 ]
     r26_W => 0.98, r26_n => 1.4, r26_EC_50 => 0.5,   # r26 = [ PKAC => RyR ]
     r27_W => 0.98, r27_n => 1.4, r27_EC_50 => 0.5,   # r27 = [ PKAC => ICa ]
