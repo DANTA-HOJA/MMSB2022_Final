@@ -338,7 +338,8 @@ u0 = [ AC => 0.0,   B1AR => 0.0, B1ARPA => 0.0, B1ARPG => 0.0, cAMP => 0.0,
        PLB => 0.0,  PP1 => 0.0,  PP2A => 0.0,   RyR => 0.0,    TnI => 0.0 ]
 
 # time range
-tspan = (0.0, 100.0)
+tend = 60.0
+tspan = (0.0, tend)
 
 # parameters
 # 
@@ -423,8 +424,8 @@ prob = ODEProblem(fullSys, u0, tspan, params)
 
 # plot all together
 plot(sol1, vars=([1, 10, 13, 21]),
-     xticks = 0:10:100, yticks = 0:0.1:1, x_tickfontsize = 6,
-     xlims=(0, 100), ylims=(0.0, 1.1),
+     xticks = 0:10:tend, yticks = 0:0.1:1, x_tickfontsize = 6,
+     xlims=(0, tend), ylims=(0.0, 1.1),
      title="cardiac β-adrenergic signaling (static)", legend=:outerbottomright, 
      xlabel="Time (sec)", ylabel="Fractioanl activation"
 )
