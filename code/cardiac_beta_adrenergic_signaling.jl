@@ -421,6 +421,39 @@ prob = ODEProblem(fullSys, u0, tspan, params)
 # solve problem
 @time sol1 = solve(prob, QNDF())
 
+#= 
+INDEX_TABLE for sol1
+
+    %%% input %%%
+    1. NE
+    2. Fsk
+    3. IBMX
+    4. PKI
+    5. PP2A
+
+    %%% middle %%%
+    6. B1AR
+    7. GRK
+    8. B1ARPG
+    9. GsaBg
+    10. Gsa
+    11. Gbg
+    12. AC
+    13. cAMP
+    14. PDE
+    15. PKA
+    16. PKAR
+    17. PKAC
+    18. IKs
+    19. B1ARPA
+    20. TnI
+    21. PLB
+    22. Inhib1
+    23. RyR
+    24. ICa
+    25. PP1
+
+=#
 
 # plot all together
 plot(sol1, vars=([1, 10, 13, 21]),
