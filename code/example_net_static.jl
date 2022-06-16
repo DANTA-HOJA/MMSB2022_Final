@@ -40,8 +40,8 @@ eqsFull = [ r3_fact_A ~ act(A, r3_W, r3_n, r3_EC_50),
         r4_fact_B ~ act(B, r4_W, r4_n, r4_EC_50),
         r5_fact_C ~ act(C, r5_W, r5_n, r5_EC_50),
         r5_fact_D ~ act(D, r5_W, r5_n, r5_EC_50),
-        r6_fact_E ~ act(E, r6_W, r6_n, r6_EC_50),
         r5_finhib_D ~ inhib(r5_fact_D, r5_W),
+        r6_fact_E ~ act(E, r6_W, r6_n, r6_EC_50),
         Dt(A) ~ (r1_W*max_A - A)/tau_A,
         Dt(B) ~ (r2_W*max_B - B)/tau_B,
         Dt(C) ~ (OR(r3_W*r3_fact_A, r6_W*r6_fact_E)*max_C - C)/tau_C,
@@ -79,8 +79,8 @@ params = [
     max_C => 1.0, tau_C => 1.0,
     max_D => 1.0, tau_D => 1.0,
     max_E => 1.0, tau_E => 1.0,
-    r1_W => 0.99, r1_n => 1.4, r1_EC_50 => 0.7, # => A
-    r2_W => 0.99, r2_n => 1.4, r2_EC_50 => 0.7, # => B
+    r1_W => 0.99, r1_n => 1.4, r1_EC_50 => 0.5, # => A
+    r2_W => 0.99, r2_n => 1.4, r2_EC_50 => 0.5, # => B
     r3_W => 1.0, r3_n => 1.4, r3_EC_50 => 0.5, # A => C
     r4_W => 1.0, r4_n => 1.4, r4_EC_50 => 0.5, # B => D
     r5_W => 1.0, r5_n => 1.4, r5_EC_50 => 0.5,  # C & !D => E
@@ -90,9 +90,9 @@ params = [
 
 prob = ODEProblem(fullSys, u0, tend, params)
 
-sol1 = solve(prob, CVODE_BDF())
+sol1 = solve(prob, QNDF(), Dabstol=1e-10, reltol=1e-10)
 
-plot(sol1, xticks = 0:5:110, ylims=(0.0, 1.0),
-     title="Example_Net ( A + B activation )",
+plot(sol1, xticks = 0:10:tend, xlims=(0.0, 50.0), ylims=(0.0, 1.1),
+     title="Example_Net ( input A + B )",
      xlabel="Time (sec)",
      ylabel="Fractioanl activation")
