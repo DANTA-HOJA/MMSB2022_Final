@@ -339,10 +339,6 @@ u0 = [ AC => 0.0,   B1AR => 0.0, B1ARPA => 0.0, B1ARPG => 0.0, cAMP => 0.0,
        PDE => 0.0,  PKA => 0.0,  PKAC => 0.0,   PKAR => 0.0,   PKI => 0.0,
        PLB => 0.0,  PP1 => 0.0,  PP2A => 0.0,   RyR => 0.0,    TnI => 0.0 ]
 
-# time range
-tend = 600.0
-tspan = (0.0, tend)
-
 # parameters
 # 
 # NOTE: if weight is to small, may cause solver difficult to solve answer
@@ -435,13 +431,13 @@ params = [
     r36_W => 0.98, r36_n => 1.4, r36_EC_50 => 0.5,   # r36 = [ !PP2A => RyR ]
     W_b => 0.225 ]
 
+# time range
+tend = 600.0
+tspan = (0.0, tend)
+
 
 # initial ODE Problem
 prob = ODEProblem(fullSys, u0, tspan, params)
-
-# solve problem
-@time sol1 = solve(prob, QNDF())
-
 
 #= 
 INDEX_TABLE for sol1
@@ -476,6 +472,9 @@ INDEX_TABLE for sol1
     25. PP1
 
 =#
+
+# solve problem
+@time sol1 = solve(prob, QNDF())
 
 # plot all together
 plot(sol1, vars=([1, 2, 3, 4, 5, 21]),

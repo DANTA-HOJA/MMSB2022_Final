@@ -339,10 +339,6 @@ u0 = [ AC => 0.0,   B1AR => 0.0, B1ARPA => 0.0, B1ARPG => 0.0, cAMP => 0.0,
        PDE => 0.0,  PKA => 0.0,  PKAC => 0.0,   PKAR => 0.0,   PKI => 0.0,
        PLB => 0.0,  PP1 => 0.0,  PP2A => 0.0,   RyR => 0.0,    TnI => 0.0 ]
 
-# time range
-tend = 600.0
-tspan = (0.0, tend)
-
 # parameters
 # 
 # NOTE: if weight is to small, may cause solver difficult to solve answer
@@ -435,10 +431,16 @@ params = [
     r36_W => 0.98, r36_n => 1.4, r36_EC_50 => 0.5,   # r36 = [ !PP2A => RyR ]
     W_b => 0.225 ]
 
+# time range
+tend = 600.0
+tspan = (0.0, tend)
 
+
+# create dynamic condition (callback method), ref = https://diffeq.sciml.ai/stable/features/callback_functions/
 
 dosetime = [tend*0.1, tend*0.8]
 
+# NE_on ( t==tend*0.1 )： NE => 1.0, r1_W => 0.98
 condition_1(u,t,integrator) = t == dosetime[1]
 function affect_1!(integrator)
 
@@ -459,6 +461,7 @@ function affect_1!(integrator)
 end
 cb_1 = DiscreteCallback(condition_1, affect_1!)
 
+# NE_off ( t==tend*0.8 )： NE => 0.0, r1_W => 0.02
 condition_2(u,t,integrator) = t == dosetime[2]
 function affect_2!(integrator)
 
@@ -474,10 +477,6 @@ cb_set = CallbackSet(cb_1, cb_2) #, cb_3, cb_4, cb_5)
 
 # initial ODE Problem
 prob = ODEProblem(fullSys, u0, tspan, params)
-
-# solve problem
-@time sol1 = solve(prob, BS3(), callback=cb_set, tstops=dosetime, abstol=1e-10, reltol=1e-10)
-
 
 #= 
 INDEX_TABLE for sol1
@@ -512,6 +511,9 @@ INDEX_TABLE for sol1
     25. PP1
 
 =#
+
+# solve problem
+@time sol1 = solve(prob, BS3(), callback=cb_set, tstops=dosetime, abstol=1e-10, reltol=1e-10)
 
 # plot all together
 plot(sol1, vars=([1, 2, 3, 4, 5, 10, 21]),
