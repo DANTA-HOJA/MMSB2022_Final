@@ -513,7 +513,7 @@ INDEX_TABLE for sol1
 =#
 
 # solve problem
-@time sol1 = solve(prob, BS3(), callback=cb_set, tstops=dosetime, abstol=1e-10, reltol=1e-10)
+@time sol1 = solve(prob, QNDF(), callback=cb_set, tstops=dosetime, abstol=1e-10, reltol=1e-10)
 
 # plot all together
 plot(sol1, vars=([1, 2, 3, 4, 5, 10, 21]),
