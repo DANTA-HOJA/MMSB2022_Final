@@ -336,7 +336,7 @@ fullSys = structural_simplify(fullsys)
 u0 = [ AC => 0.0,   B1AR => 0.0, B1ARPA => 0.0, B1ARPG => 0.0, cAMP => 0.0,  
        Fsk => 0.0,  Gbg => 0.0,  GRK => 0.0,    Gsa => 0.0,    GsaBg => 0.0,
        IBMX => 0.0, ICa => 0.0,  IKs => 0.0,    Inhib1 => 0.0, NE => 0.0,
-       PDE => 0.0,  PKA => 0.0,  PKAC => 0.0,   PKAR => 0.0,   PKI => 1.0,
+       PDE => 0.0,  PKA => 0.0,  PKAC => 0.0,   PKAR => 0.0,   PKI => 0.0,
        PLB => 0.0,  PP1 => 0.0,  PP2A => 0.0,   RyR => 0.0,    TnI => 0.0 ]
 
 # time range
@@ -455,7 +455,7 @@ function affect_1!(integrator)
 
     integrator.u[15] = 1.0
     integrator.p[51] = 0.98
-    
+
 end
 cb_1 = DiscreteCallback(condition_1, affect_1!)
 
