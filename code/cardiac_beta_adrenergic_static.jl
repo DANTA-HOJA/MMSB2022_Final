@@ -421,34 +421,11 @@ prob = ODEProblem(fullSys, u0, tspan, params)
 #= 
 INDEX_TABLE for sol1
 
-    %%% input %%%
-    1. NE
-    2. Fsk
-    3. IBMX
-    4. PKI
-    5. PP2A
-
-    %%% middle %%%
-    6. B1AR
-    7. GRK
-    8. B1ARPG
-    9. GsaBg
-    10. Gsa
-    11. Gbg
-    12. AC
-    13. cAMP
-    14. PDE
-    15. PKA
-    16. PKAR
-    17. PKAC
-    18. IKs
-    19. B1ARPA
-    20. TnI
-    21. PLB
-    22. Inhib1
-    23. RyR
-    24. ICa
-    25. PP1
+    1. NE      2. Fsk       3. IBMX      4. PKI       5. PP2A
+    6. B1AR    7. GRK       8. B1ARPG    9. GsaBg     10. Gsa  
+    11. Gbg    12. AC       13. cAMP     14. PDE      15. PKA  
+    16. PKAR   17. PKAC     18. IKs      19. B1ARPA   20. TnI
+    21. PLB    22. Inhib1   23. RyR      24. ICa      25. PP1
 
 =#
 
@@ -456,7 +433,7 @@ INDEX_TABLE for sol1
 @time sol1 = solve(prob, QNDF())
 
 # plot all together
-plot(sol1, vars=([1, 10, 13, 21]),
+plot(sol1, vars=([NE, Gsa, cAMP, PLB]),
      xticks = 0:10:tend, yticks = 0:0.1:1, x_tickfontsize = 6,
      xlims=(0, tend), ylims=(0.0, 1.1),
      title="cardiac β-adrenergic signaling (static)", legend=:outerbottomright, 
