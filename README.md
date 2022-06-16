@@ -13,6 +13,9 @@
 [mmsb-bebi-5009](https://ntumitolab.github.io/mmsb-bebi-5009/mmsb/ch03.html)
 
 
+[Numerical Error](https://diffeq.sciml.ai/stable/basics/faq/#What-does-tolerance-mean-and-how-much-error-should-I-expect)
+
+
 [Tutorial：Ordinary Differential Equations](https://diffeq.sciml.ai/dev/tutorials/ode_example/#Defining-Parameterized-Functions)
 
 
